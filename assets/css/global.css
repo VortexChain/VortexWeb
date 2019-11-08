@@ -1,0 +1,21 @@
+*{
+    transition: background-color .2s;
+}
+
+html, body{
+    overflow-x: hidden;
+}
+
+.ui.button{
+    margin-bottom: .2em;
+    margin-top: .2em;
+}
+
+.vortex-icon{
+    mask: url(~static/vortex.svg);
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    mask-size: contain;
+    background: currentColor;
+}
