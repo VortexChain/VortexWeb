@@ -35,10 +35,10 @@ export default {
         openModal(){
             Check2fa.open(this.$store, {animationDuration: 300})
             .then(() => {
-                console.log('YAY') 
+                console.log('YAY')
             })
             .catch(() => {
-                console.log('Ohh') 
+                console.log('Ohh')
             })
         },
         updateProfile(){

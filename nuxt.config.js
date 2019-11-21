@@ -68,6 +68,10 @@ module.exports = {
             appId: '1:951093526823:web:691535202ea0b370'
           }
         },
+        services: {
+          auth: true,
+          messaging: true
+        },
         // The following options are optional:
         useOnly: ['auth', 'messaging'],
         // useOnly: ['auth','firestore','functions','storage','realtimeDb', 'messaging', 'performance'],
@@ -117,6 +121,7 @@ module.exports = {
     { src: '~/plugins/nuxt-client-init', ssr: false },
     { src: '~/plugins/vue-tilt', ssr: false },
     { src: '~/plugins/ripple-effect', ssr: false },
+    { src: '~/plugins/xterm', ssr: false },
     { src: '~/plugins/axios' },
     // { src: '~/plugins/dynamic-modal' },
   ],
