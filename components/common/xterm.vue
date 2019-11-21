@@ -1,5 +1,5 @@
 <template>
-  <div ref="terminal"></div>
+  <div ref="terminal" style="height: calc( 100vh - 125px )"></div>
 </template>
 
 <script>
@@ -20,6 +20,8 @@ export default {
 
         this.terminal = new Terminal()
         this.terminal.open(this.$refs.terminal)
+        this.terminal.setOption('theme', { background: '#1a202c' })
+        // this.terminal.fit()
 
         //Connect socket
         const protocol = (location.protocol === 'https:') ? 'wss://' : 'ws://';

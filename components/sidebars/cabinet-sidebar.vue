@@ -5,6 +5,10 @@
             <sui-icon size="large" :name="item.icon"/>
             <span class="hidden md:block">{{ item.title }}</span>
         </n-link>
+        <div class="desc">
+            <span>Developed by VortexChain</span>
+            <a href="https://github.com/VortexChain" target="_blank">github.com/VortexChain</a>
+        </div>
     </div>
 </template>
 
@@ -31,6 +35,8 @@ export default {
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 
     .arrow{
         position: absolute;
@@ -70,6 +76,20 @@ export default {
     i{
         margin-left: 28px;
         margin-right: 15px;
+    }
+
+    .desc{
+        width: 100%;
+        color: rgb(189, 189, 189);
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+
+        a:hover{
+            color: white;
+        }
     }
 }
 </style>
