@@ -19,3 +19,10 @@ export function getUserFromCookie (req) {
 export function getUserFromSession (req) {
   return req.session ? req.session.userId : null
 }
+
+export function getTokenFromCookie (req) {
+    const parsed = cookieparser.parse(req.headers.cookie)
+    const accessTokenCookie = parsed.access_token
+    if (!accessTokenCookie) return
+    return accessTokenCookie
+}

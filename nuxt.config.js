@@ -80,6 +80,10 @@ module.exports = {
       }
     ]
   ],
+  axios: {
+    https: true,
+    baseURL: 'http://vortexchain.ru'
+  },
   i18n: {
     locales: [
       {

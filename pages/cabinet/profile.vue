@@ -42,6 +42,7 @@ export default {
             })
         },
         updateProfile(){
+            //this.$axios.get('SetRole?role=Creater')
             this.updateUser({ name: this.name, role: this.role }).catch(err => console.log(err))
         }
     }

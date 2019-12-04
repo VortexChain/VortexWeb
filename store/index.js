@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getUserFromCookie, getUserFromSession } from '@/authentication'
+import { getUserFromCookie, getUserFromSession, getTokenFromCookie } from '@/authentication'
 const cookieparser = process.server ? require('cookieparser') : undefined
 
 Vue.use(Vuex)
@@ -26,6 +26,11 @@ export const actions = {
     const user = getUserFromCookie(req)
     if (user) {
       await commit('user/setUser', { name: user.name, email: user.email, avatar: user.picture, uid: user.user_id})
+    }
+
+    const token = getTokenFromCookie(req)
+    if(token){
+      this.$axios.setToken(token, 'Bearer')
     }
   },
   nuxtClientInit ({ commit }, { req }) {

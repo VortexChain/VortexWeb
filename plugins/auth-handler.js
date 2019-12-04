@@ -3,6 +3,7 @@ export default async context => {
         if (user) {
             // User is signed in.
             await context.store.dispatch('user/authUser', user)
+            //context.app.$axios.get('/service/AssociateUser')
             //   var displayName = user.displayName
             //   var email = user.email
             //   var emailVerified = user.emailVerified

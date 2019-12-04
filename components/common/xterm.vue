@@ -1,40 +1,73 @@
 <template>
-  <div ref="terminal" style="height: calc( 100vh - 125px )"></div>
+    <div ref="terminal"></div>
 </template>
 
 <script>
 import { Terminal } from 'xterm'
-import * as attach from 'xterm/lib/addons/attach/attach'
-import * as fit from 'xterm/lib/addons/fit/fit'
+import { AttachAddon } from 'xterm-addon-attach'
+import { FitAddon } from 'xterm-addon-fit'
 
 export default {
+    props: {
+        sshUserId:{
+            required: true,
+            type: Number,
+        },
+    },
     data(){
         return {
             terminal: null,
-            shellprompt: '$ '
+            socket: null,
+            shellprompt: '$ ',
+            fitAddon: null
+        }
+    },
+    methods:{
+        connect(){
+            this.terminal = new Terminal()
+
+            this.fitAddon = new FitAddon()
+            this.terminal.loadAddon(this.fitAddon)
+            this.terminal.open(this.$refs.terminal)
+            this.fitAddon.fit()
+
+            this.terminal.setOption('theme', { background: '#1a202c' })
+
+            //Connect socket
+            const protocol = (location.protocol === 'https:') ? 'wss://' : 'ws://'
+            const port = location.port ? `:${location.port}` : ''
+            const socketUrl = `${protocol}${location.hostname}${port}/shell?sshUserId=${this.sshUserId}`
+            this.socket = new WebSocket(socketUrl)
+
+            //Attach socket to terminal
+            this.socket.onopen = (ev) => {
+                const attachAddon = new AttachAddon(this.socket)
+                this.terminal.loadAddon(attachAddon)
+            }
+        },
+        fit(){
+            this.fitAddon.fit()
         }
     },
     mounted(){
-        Terminal.applyAddon(attach)
-        Terminal.applyAddon(fit)
-
-        this.terminal = new Terminal()
-        this.terminal.open(this.$refs.terminal)
-        this.terminal.setOption('theme', { background: '#1a202c' })
-        // this.terminal.fit()
-
-        //Connect socket
-        const protocol = (location.protocol === 'https:') ? 'wss://' : 'ws://';
-        const port = location.port ? `:${location.port}` : '';
-        const socketUrl = `${protocol}${location.hostname}${port}/shell`;
-        const socket = new WebSocket(socketUrl);
-
-        //Attach socket to terminal
-        socket.onopen = (ev) => { this.terminal.attach(socket); };
+        if(this.sshUserId){
+            this.connect()
+        }
     },
+    watch:{
+        sshUserId(){
+            if(this.terminal){
+                this.terminal.dispose()
+                this.terminal = null
+            }
+            if(this.sshUserId){
+                this.connect()
+            }
+        }
+    }
 }
 </script>
 
 <style>
-@import 'xterm/dist/xterm.css';
+@import 'xterm/css/xterm.css';
 </style>
