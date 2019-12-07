@@ -21,8 +21,9 @@ export function getUserFromSession (req) {
 }
 
 export function getTokenFromCookie (req) {
-    const parsed = cookieparser.parse(req.headers.cookie)
-    const accessTokenCookie = parsed.access_token
-    if (!accessTokenCookie) return
-    return accessTokenCookie
+  if (!req.headers.cookie) return
+  const parsed = cookieparser.parse(req.headers.cookie)
+  const accessTokenCookie = parsed.access_token
+  if (!accessTokenCookie) return
+  return accessTokenCookie
 }

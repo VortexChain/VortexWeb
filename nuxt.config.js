@@ -35,14 +35,21 @@ module.exports = {
     '@nuxtjs/style-resources',
     'semantic-ui-vue/nuxt',
     'cookie-universal-nuxt',
+    'nuxt-vuex-router-sync',
     'nuxt-i18n',
     '@nuxtjs/axios',
-    ['@nuxtjs/pwa', { }],
-    ['nuxt-izitoast', 
-      { 
-        position: 'bottomLeft', 
-        transitionIn: 'bounceInRight', 
-        transitionOut: 'fadeOutRight', 
+    ['@nuxtjs/pwa', {
+
+     }],
+    ['@nuxtjs/sitemap', {
+      hostname: "https://vortexchain.ru",
+      gzip: true,
+    }],
+    ['nuxt-izitoast',
+      {
+        position: 'bottomLeft',
+        transitionIn: 'bounceInRight',
+        transitionOut: 'fadeOutRight',
       }
     ],
     ['nuxt-fire',
@@ -78,7 +85,23 @@ module.exports = {
         // customEnv: false,
         // functionsLocation: 'us-central1',
       }
-    ]
+    ],
+    ['nuxt-mq', {
+      defaultBreakpoint: 'xl',
+      breakpoints: {
+        xs: 640,
+        sm: 768,
+        md: 1024,
+        lg: 1280,
+        xl: Infinity
+      }
+    }],
+    ['nuxt-purgecss', {
+
+    }],
+    ['@nuxtjs/robots', {
+
+    }]
   ],
   axios: {
     https: true,
