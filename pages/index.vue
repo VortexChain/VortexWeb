@@ -12,6 +12,7 @@
         </div>
         <sui-button @click="logoutUser()">Logout</sui-button>
         <sui-button @click="showToast({ title: 'Title', message: 'Message' })">Show toast</sui-button>
+        <sui-button @click="testRequest">Test request</sui-button>
 
       </section>
     </div>
@@ -43,6 +44,9 @@ export default {
       logoutUser:'user/logoutUser',
       showToast:'notifications/showToast',
     }),
+    testRequest(){
+      this.$axios.get('api/BrokenMethod').then(() => {}).catch(() => {})
+    }
   }
 }
 </script>

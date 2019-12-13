@@ -10,10 +10,19 @@ export default function (context) { //{ $axios, redirect }
   context.$axios.onError(error => {
     const code = parseInt(error.response && error.response.status)
     if (code === 400) {
-      console.error('Axios error', '400')
+      context.app.$notify.error({
+        title: 'Error',
+        message: error.response.data,
+        position: 'topRight'
+      })
     }
     if (code === 401) {
-      context.store.dispatch('logoutUser')
+      context.app.$notify.error({
+        title: 'Error',
+        message: 'Unauthorized',
+        position: 'topRight'
+      })
+      context.store.dispatch('user/logoutUser')
       context.redirect('/login')
     }
   })
