@@ -47,6 +47,10 @@ export default {
         },
         fit(){
             this.fitAddon.fit()
+            this.socket.send(JSON.stringify({ command: 'resize', ptySafeCommand: true, data: {
+                cols: this.terminal.cols,
+                rows: this.terminal.rows
+            }}))
         }
     },
     mounted(){
