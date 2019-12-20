@@ -166,6 +166,20 @@ module.exports = {
         // { src: '~/plugins/dynamic-modal' },
     ],
     build: {
+        babel: {
+            presets({ isServer }) {
+                return [
+                    [
+                        require.resolve('@nuxt/babel-preset-app'),
+                        // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+                        {
+                            buildTarget: isServer ? 'server' : 'client',
+                            corejs: { version: 3 }
+                        }
+                    ]
+                ]
+            }
+        },
         vendor: [],
         extend(config, { isDev, isClient }) {
             if (isDev) {
