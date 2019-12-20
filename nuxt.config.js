@@ -180,7 +180,6 @@ module.exports = {
                 ]
             }
         },
-        vendor: [],
         extend(config, { isDev, isClient }) {
             if (isDev) {
                 config.devtool = isClient ? 'source-map' : 'inline-source-map'
