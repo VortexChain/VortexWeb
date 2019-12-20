@@ -23,9 +23,9 @@
     "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/tailwindcss": "^1.1.1",
-    "cookie-universal-nuxt": "^2.0.19",
+    "cookie-universal-nuxt": "^2.1.0",
     "cookieparser": "^0.1.0",
-    "firebase": "^7.5.2",
+    "firebase": "^7.6.0",
     "https": "^1.0.0",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.0",
@@ -33,7 +33,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "nuxt": "^2.10.1",
-    "nuxt-fire": "^3.3.0",
+    "nuxt-fire": "^3.5.1",
     "nuxt-i18n": "^6.4.1",
     "nuxt-izitoast": "^1.0.0",
     "nuxt-mq": "^2.0.1",
@@ -41,21 +41,23 @@
     "nuxt-vuex-router-sync": "0.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.8.1",
+    "vue": "^2.6.11",
     "vue-particles": "^1.0.9",
     "vue-ripple-directive": "^2.0.1",
+    "vue-template-compiler": "^2.6.11",
     "vue-tilt.js": "^1.0.2",
     "xterm": "^4.3.0",
     "xterm-addon-attach": "^0.4.0",
     "xterm-addon-fit": "^0.3.0"
   },
   "devDependencies": {
-    "@babel/runtime-corejs2": "^7.7.5",
+    "@babel/runtime-corejs2": "^7.7.6",
     "babel-eslint": "^10.0.1",
-    "core-js": "^2.6.10",
+    "core-js": "^2.6.11",
     "eslint": "^6.7.2",
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^3.0.3",
-    "eslint-plugin-vue": "^5.2.3"
+    "eslint-plugin-vue": "^6.0.1"
   },
   "optionalDependencies": {
     "fsevents": "*"

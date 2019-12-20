@@ -25,7 +25,6 @@ export default {
     methods:{
         connect(){
             this.terminal = new Terminal()
-
             this.fitAddon = new FitAddon()
             this.terminal.loadAddon(this.fitAddon)
             this.terminal.open(this.$refs.terminal)
@@ -57,6 +56,15 @@ export default {
         if(this.sshUserId){
             this.connect()
         }
+
+        if(process.browser){
+            window.onresize = this.fit
+        }
+    },
+    beforeDestroy(){
+        if(process.browser){
+            window.onresize = null
+        }
     },
     watch:{
         sshUserId(){
@@ -74,4 +82,7 @@ export default {
 
 <style>
 @import 'xterm/css/xterm.css';
+.terminal.xterm{
+    padding: 10px;
+}
 </style>

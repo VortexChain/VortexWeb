@@ -17,7 +17,7 @@
                     { icon: 'cog', title: 'Settings', route: 'cabinet-settings' },
                     { icon: 'terminal', title: 'Terminal', route: 'cabinet-terminal' },
                     { icon: 'podcast', title: 'Streaming', route: 'cabinet-streaming' },
-                    { icon: 'th large', title: 'Subscriptons', route: 'cabinet-subscriptions' },
+                    { icon: 'th large', title: 'Subscripton', route: 'cabinet-subscriptions', label: 'entp' },
                     { icon: 'comments', title: 'Chat', route: 'cabinet-chat' },
                 ]"/>
             </div>
@@ -98,15 +98,15 @@ export default {
         flex: 1 1 0%;
         overflow-y: auto;
     }
+}
 
-    .cabinet-stub{
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+.cabinet-stub{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 767px) {

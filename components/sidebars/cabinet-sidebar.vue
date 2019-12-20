@@ -3,7 +3,10 @@
         <div :style="acticeItemIndex >= 0 ? `top: ${54 * acticeItemIndex}px` : 'display: none'" class="arrow"></div>
         <n-link v-for="(item, index) in items" :key="index" tag="div" :to="localePath(item.route)" class="sidebar-item" :class="$route.fullPath == localePath(item.route) ? 'active' : ''">
             <sui-icon size="large" :name="item.icon"/>
-            <span class="hidden md:block">{{ item.title }}</span>
+            <span class="hidden md:inline" style="margin-top: 2px;">{{ item.title }}</span>
+            <div v-if="item.label" class="badge bg-gray-700">
+                <span>{{ item.label }}</span>
+            </div>
         </n-link>
         <div class="desc">
             <span>Developed by VortexChain</span>
@@ -70,6 +73,14 @@ export default {
             &:active{
                 color: @primary-green-dark;
             }
+        }
+
+        .badge{
+            padding: 2px 4px;
+            font-size: 12px;
+            line-height: 14px;
+            margin-left: 10px;
+            color: white;
         }
     }
 
