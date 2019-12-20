@@ -2,7 +2,7 @@
 @animation-duration-cuted: 0s;
 @animation-type-left: left-auth-out;
 @animation-type-right: right-auth-out;
-@form-fade-in-duration: .3s;
+@form-fade-in-duration: 0.3s;
 @fill-mode: forwards;
 
 .leftauth-leave-active {
@@ -54,18 +54,30 @@
 }
 
 @keyframes auth-action-form-in {
-    0% { opacity: 0 }
-    100% { opacity: 1 }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes left-auth-out {
-    0% { opacity: translateX( 0 ); }
-    100% { transform: translateX( calc( -100vw + 100% ) ); }
+    0% {
+        opacity: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100vw + 100%));
+    }
 }
 
 @keyframes right-auth-out {
-    0% { transform: translateX( 0vw ); }
-    100% { transform: translateX( calc( 100vw - 100% ) ); }
+    0% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(calc(100vw - 100%));
+    }
 }
 
 @media (max-width: 850px) {
