@@ -1,16 +1,12 @@
 <template>
-  <div>
-    
-  </div>
+    <div></div>
 </template>
 
 <script>
 export default {
     middleware: 'auth',
-    layout: 'cabinet',
+    layout: 'cabinet'
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

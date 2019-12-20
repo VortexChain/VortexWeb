@@ -4,20 +4,20 @@ export const state = () => ({
 })
 
 export const mutations = {
-    setToken(state, token){
+    setToken(state, token) {
         state.token = token
     }
 }
 
 export const actions = {
-    async changeToken({ dispatch, commit }, token){
-        commit('setToken',token)
+    async changeToken({ dispatch, commit }, token) {
+        commit('setToken', token)
         // dispatch('showToast', {
         //     title: 'Token set',
         //     message: token
         // })
     },
-    async showToast({ dispatch, commit, state }, notice){
+    async showToast({ dispatch, commit, state }, notice) {
         this.$notify.show({
             title: notice.title,
             message: notice.message,

@@ -1,13 +1,18 @@
 <template>
-    <sui-modal v-model="open" size="mini"  :animationDuration="animDuration" @clickAwayModal="negativeResult">
+    <sui-modal
+        v-model="open"
+        size="mini"
+        :animationDuration="animDuration"
+        @clickAwayModal="negativeResult"
+    >
         <sui-modal-header>Verify 2FA</sui-modal-header>
         <sui-modal-content>
             <sui-form>
-                <sui-image src="../QR-code.png" class="w-full"/>
+                <sui-image src="../QR-code.png" class="w-full" />
                 <sui-divider class="mt-8" horizontal>or use code</sui-divider>
                 <sui-form-field>
                     <label>2FA Code</label>
-                    <input placeholder="Enter 2FA Code">
+                    <input placeholder="Enter 2FA Code" />
                 </sui-form-field>
             </sui-form>
         </sui-modal-content>
@@ -23,7 +28,6 @@
 </template>
 
 <script>
-
 export default {
     props: {
         positiveResult: {
@@ -39,28 +43,26 @@ export default {
             default: 500
         }
     },
-    data(){
-        return{
+    data() {
+        return {
             open: false
         }
     },
-    methods:{
-        okResult(){
+    methods: {
+        okResult() {
             this.open = false
             this.positiveResult()
         },
-        cancelResult(){
+        cancelResult() {
             console.log(this)
             this.open = false
             this.negativeResult()
         }
     },
-    mounted(){
+    mounted() {
         this.open = true
     }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

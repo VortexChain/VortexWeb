@@ -2,7 +2,7 @@ import Vue from 'vue'
 import TwofaCheck from './twofa-check'
 
 export default {
-    open: function(store, {parentElement, animationDuration}){
+    open: function(store, { parentElement, animationDuration }) {
         let parent = parentElement || document.body
         let anim = animationDuration || 500
         console.log(store)

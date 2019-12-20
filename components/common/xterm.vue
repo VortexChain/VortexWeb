@@ -9,12 +9,12 @@ import { FitAddon } from 'xterm-addon-fit'
 
 export default {
     props: {
-        sshUserId:{
+        sshUserId: {
             required: true,
-            type: Number,
-        },
+            type: Number
+        }
     },
-    data(){
+    data() {
         return {
             terminal: null,
             socket: null,
@@ -22,8 +22,8 @@ export default {
             fitAddon: null
         }
     },
-    methods:{
-        connect(){
+    methods: {
+        connect() {
             this.terminal = new Terminal()
             this.fitAddon = new FitAddon()
             this.terminal.loadAddon(this.fitAddon)
@@ -33,46 +33,52 @@ export default {
             this.terminal.setOption('theme', { background: '#1a202c' })
 
             //Connect socket
-            const protocol = (location.protocol === 'https:') ? 'wss://' : 'ws://'
+            const protocol = location.protocol === 'https:' ? 'wss://' : 'ws://'
             const port = location.port ? `:${location.port}` : ''
             const socketUrl = `${protocol}${location.hostname}${port}/shell?sshUserId=${this.sshUserId}`
             this.socket = new WebSocket(socketUrl)
 
             //Attach socket to terminal
-            this.socket.onopen = (ev) => {
+            this.socket.onopen = ev => {
                 const attachAddon = new AttachAddon(this.socket)
                 this.terminal.loadAddon(attachAddon)
             }
         },
-        fit(){
+        fit() {
             this.fitAddon.fit()
-            this.socket.send(JSON.stringify({ command: 'resize', ptySafeCommand: true, data: {
-                cols: this.terminal.cols,
-                rows: this.terminal.rows
-            }}))
+            this.socket.send(
+                JSON.stringify({
+                    command: 'resize',
+                    ptySafeCommand: true,
+                    data: {
+                        cols: this.terminal.cols,
+                        rows: this.terminal.rows
+                    }
+                })
+            )
         }
     },
-    mounted(){
-        if(this.sshUserId){
+    mounted() {
+        if (this.sshUserId) {
             this.connect()
         }
 
-        if(process.browser){
+        if (process.browser) {
             window.onresize = this.fit
         }
     },
-    beforeDestroy(){
-        if(process.browser){
+    beforeDestroy() {
+        if (process.browser) {
             window.onresize = null
         }
     },
-    watch:{
-        sshUserId(){
-            if(this.terminal){
+    watch: {
+        sshUserId() {
+            if (this.terminal) {
                 this.terminal.dispose()
                 this.terminal = null
             }
-            if(this.sshUserId){
+            if (this.sshUserId) {
                 this.connect()
             }
         }
@@ -82,7 +88,7 @@ export default {
 
 <style>
 @import 'xterm/css/xterm.css';
-.terminal.xterm{
+.terminal.xterm {
     padding: 10px;
 }
 </style>

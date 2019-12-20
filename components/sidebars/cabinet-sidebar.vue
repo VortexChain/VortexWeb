@@ -1,38 +1,60 @@
 <template>
     <div class="vtx-sidebar bg-gray-900">
-        <div :style="acticeItemIndex >= 0 ? `top: ${54 * acticeItemIndex}px` : 'display: none'" class="arrow"></div>
-        <n-link v-for="(item, index) in items" :key="index" tag="div" :to="localePath(item.route)" class="sidebar-item" :class="$route.fullPath == localePath(item.route) ? 'active' : ''">
-            <sui-icon size="large" :name="item.icon"/>
-            <span class="hidden md:inline" style="margin-top: 2px;">{{ item.title }}</span>
+        <div
+            :style="
+                acticeItemIndex >= 0
+                    ? `top: ${54 * acticeItemIndex}px`
+                    : 'display: none'
+            "
+            class="arrow"
+        ></div>
+        <n-link
+            v-for="(item, index) in items"
+            :key="index"
+            tag="div"
+            :to="localePath(item.route)"
+            class="sidebar-item"
+            :class="$route.fullPath == localePath(item.route) ? 'active' : ''"
+        >
+            <sui-icon size="large" :name="item.icon" />
+            <span class="hidden md:inline" style="margin-top: 2px;">{{
+                item.title
+            }}</span>
             <div v-if="item.label" class="badge bg-gray-700">
                 <span>{{ item.label }}</span>
             </div>
         </n-link>
         <div class="desc">
             <span>Developed by VortexChain</span>
-            <a href="https://github.com/VortexChain" target="_blank">github.com/VortexChain</a>
+            <a href="https://github.com/VortexChain" target="_blank"
+                >github.com/VortexChain</a
+            >
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props:{
-        items:{
+    props: {
+        items: {
             type: Array,
             default: () => []
         }
     },
-    computed:{
-        acticeItemIndex(){
-            return this.items.findIndex(item => this.localePath(item.route) == this.$nuxt.$nuxt.$route.fullPath)
+    computed: {
+        acticeItemIndex() {
+            return this.items.findIndex(
+                item =>
+                    this.localePath(item.route) ==
+                    this.$nuxt.$nuxt.$route.fullPath
+            )
         }
     }
 }
 </script>
 
 <style lang="less" scoped>
-.vtx-sidebar{
+.vtx-sidebar {
     width: 100%;
     height: 100%;
     position: relative;
@@ -41,7 +63,7 @@ export default {
     display: flex;
     flex-direction: column;
 
-    .arrow{
+    .arrow {
         position: absolute;
         border-right: 17px solid white;
         border-top: 17px solid transparent;
@@ -50,10 +72,10 @@ export default {
         margin-bottom: 10px;
         right: 0;
         pointer-events: none;
-        transition: .2s;
+        transition: 0.2s;
     }
 
-    .sidebar-item{
+    .sidebar-item {
         width: 100%;
         height: 54px;
         display: flex;
@@ -63,19 +85,18 @@ export default {
         font-weight: 400;
         cursor: pointer;
 
-        &:hover{
-
+        &:hover {
         }
 
-        &.active{
+        &.active {
             color: @primary-green;
 
-            &:active{
+            &:active {
                 color: @primary-green-dark;
             }
         }
 
-        .badge{
+        .badge {
             padding: 2px 4px;
             font-size: 12px;
             line-height: 14px;
@@ -84,12 +105,12 @@ export default {
         }
     }
 
-    i{
+    i {
         margin-left: 28px;
         margin-right: 15px;
     }
 
-    .desc{
+    .desc {
         width: 100%;
         color: rgb(189, 189, 189);
         margin-top: auto;
@@ -98,7 +119,7 @@ export default {
         align-items: center;
         padding: 10px;
 
-        a:hover{
+        a:hover {
             color: white;
         }
     }

@@ -9,23 +9,19 @@ import { mapState } from 'vuex'
 export default {
     transition: 'slide',
     layout: 'landing',
-    data(){
-        return{
-          open: false
+    data() {
+        return {
+            open: false
         }
     },
-    components: {
-    },
+    components: {},
     computed: {
         ...mapState({
             theme: state => state.themes.currentTheme
         })
     },
-    methods:{
-    }
+    methods: {}
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

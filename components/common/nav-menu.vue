@@ -3,40 +3,46 @@
         <div class="content">
             <slot name="content"></slot>
         </div>
-        <div class="menu-collapse md:invisible" :class="userMenuOpen ? '' : 'height-hidden'">
+        <div
+            class="menu-collapse md:invisible"
+            :class="userMenuOpen ? '' : 'height-hidden'"
+        >
             <slot name="menu-collapse"></slot>
         </div>
         <div class="menu-container md:invisible">
             <slot name="menu"></slot>
             <div class="menu-item" @click="userMenuOpen = !userMenuOpen">
-                <i class="fa fa-chevron-up trasition-rotate" :class="userMenuOpen ? 'upturned': ''" aria-hidden="true"></i>
+                <i
+                    class="fa fa-chevron-up trasition-rotate"
+                    :class="userMenuOpen ? 'upturned' : ''"
+                    aria-hidden="true"
+                ></i>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
-    data(){
-        return{
-            userMenuOpen: false,
+    data() {
+        return {
+            userMenuOpen: false
         }
     },
     computed: {
         ...mapState({
             currentUser: state => state.user.currentUser
-        }),
-    },
+        })
+    }
 }
 </script>
 
 <style lang="less" scoped>
-
 @menu-height: 50px;
 
-.menu-container{
+.menu-container {
     position: fixed;
     width: 100%;
     bottom: 0;
@@ -47,7 +53,7 @@ export default {
     align-items: stretch;
 }
 
-.menu-collapse{
+.menu-collapse {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -57,16 +63,16 @@ export default {
     background: @body-background;
     color: @text-color;
     max-height: 400px;
-    transition: .3s;
+    transition: 0.3s;
     overflow-x: hidden;
     overflow-y: auto;
 
-    &.height-hidden{
+    &.height-hidden {
         max-height: 0px;
         overflow: hidden;
     }
 
-    div{
+    div {
         padding-left: 30px;
         padding-right: 30px;
         height: 50px;
@@ -76,7 +82,7 @@ export default {
     }
 }
 
-.menu-item{
+.menu-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,30 +91,30 @@ export default {
     width: 20%;
     font-size: 18px;
 
-    span{
+    span {
         font-size: 11px;
         line-height: 12px;
         font-weight: 100;
     }
 }
 
-.trasition-rotate{
-    transition: transform .3s;
+.trasition-rotate {
+    transition: transform 0.3s;
 }
 
-.upturned{
+.upturned {
     transform: rotate(180deg);
 }
 
-.content{
+.content {
     height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 @media (max-width: 767px) {
-    .content{
-        height: calc( 100vh - @menu-height );
+    .content {
+        height: calc(100vh - @menu-height);
     }
 }
 </style>
