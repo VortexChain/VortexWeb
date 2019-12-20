@@ -13,12 +13,8 @@
 </template>
 
 <script>
-import SignUpForm from '@/components/sign/sign-up-form'
-
 export default {
-    components: {
-        SignUpForm
-    }
+    components: {}
 }
 </script>
 
