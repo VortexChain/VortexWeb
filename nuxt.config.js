@@ -155,13 +155,14 @@ module.exports = {
         }
     },
     plugins: [
-        { src: '~/plugins/auth-handler.js', ssr: false },
-        { src: '~/plugins/notifications.js', ssr: false },
-        { src: '~/plugins/vue-particles', ssr: false },
-        { src: '~/plugins/nuxt-client-init', ssr: false },
-        { src: '~/plugins/vue-tilt', ssr: false },
-        { src: '~/plugins/ripple-effect', ssr: false },
-        { src: '~/plugins/xterm', ssr: false },
+        { src: '~/plugins/push-component.js' },
+        { src: '~/plugins/auth-handler.js', mode: 'client' },
+        { src: '~/plugins/notifications.js', mode: 'client' },
+        { src: '~/plugins/vue-particles', mode: 'client' },
+        { src: '~/plugins/nuxt-client-init', mode: 'client' },
+        { src: '~/plugins/vue-tilt', mode: 'client' },
+        { src: '~/plugins/ripple-effect', mode: 'client' },
+        { src: '~/plugins/xterm', mode: 'client' },
         { src: '~/plugins/axios' }
         // { src: '~/plugins/dynamic-modal' },
     ],

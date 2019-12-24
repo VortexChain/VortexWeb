@@ -17,12 +17,8 @@
             </sui-form>
         </sui-modal-content>
         <sui-modal-actions>
-            <sui-button positive @click="cancelResult">
-                Cancel
-            </sui-button>
-            <sui-button positive @click="okResult">
-                OK
-            </sui-button>
+            <sui-button positive @click="cancelResult">Cancel</sui-button>
+            <sui-button positive @click="okResult">OK</sui-button>
         </sui-modal-actions>
     </sui-modal>
 </template>
@@ -52,11 +48,23 @@ export default {
         okResult() {
             this.open = false
             this.positiveResult()
+            setTimeout(() => {
+                this.destroy()
+            }, this.animDuration)
         },
         cancelResult() {
-            console.log(this)
             this.open = false
             this.negativeResult()
+            setTimeout(() => {
+                this.destroy()
+            }, this.animDuration)
+        },
+        destroy() {
+            // destroy the vue listeners, etc
+            this.$destroy()
+
+            // remove the element from the DOM
+            this.$el.parentNode.removeChild(this.$el)
         }
     },
     mounted() {
