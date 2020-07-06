@@ -12,22 +12,17 @@ export const mutations = {
     setToken(state, token) {
         state.currentToken = token
         cookies.set('access_token', token)
-        localStorage.setItem('access_token', token)
         this.$axios.setToken(token, 'Bearer')
     },
     removeToken(state) {
         state.currentToken = null
         cookies.remove('access_token')
-        localStorage.removeItem('access_token')
         this.$axios.setToken(false)
     }
 }
 
 export const getters = {
-    getToken: state =>
-        state.currentToken ||
-        cookies.get('access_token') ||
-        localStorage.getItem('access_token')
+    getToken: state => state.currentToken || cookies.get('access_token')
 }
 
 export const actions = {

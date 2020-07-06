@@ -6,6 +6,7 @@
 import { Terminal } from 'xterm'
 import { AttachAddon } from 'xterm-addon-attach'
 import { FitAddon } from 'xterm-addon-fit'
+import * as XtermWebfont from 'xterm-webfont'
 
 export default {
     props: {
@@ -24,13 +25,18 @@ export default {
     },
     methods: {
         connect() {
-            this.terminal = new Terminal()
+            this.terminal = new Terminal({
+                fontFamily: 'JetBrains Mono',
+                fontSize: 13,
+                theme: { background: '#1a202c' }
+            })
+
+            this.terminal.loadAddon(new XtermWebfont())
+
             this.fitAddon = new FitAddon()
             this.terminal.loadAddon(this.fitAddon)
-            this.terminal.open(this.$refs.terminal)
+            this.terminal.loadWebfontAndOpen(this.$refs.terminal)
             this.fitAddon.fit()
-
-            this.terminal.setOption('theme', { background: '#1a202c' })
 
             //Connect socket
             const protocol = location.protocol === 'https:' ? 'wss://' : 'ws://'
@@ -56,6 +62,23 @@ export default {
                     }
                 })
             )
+        },
+        reconnect() {
+            if (this.socket) {
+                this.socket.close()
+                this.socket == null
+            }
+            //Connect socket
+            const protocol = location.protocol === 'https:' ? 'wss://' : 'ws://'
+            const port = location.port ? `:${location.port}` : ''
+            const socketUrl = `${protocol}${location.hostname}${port}/shell?sshUserId=${this.sshUserId}`
+            this.socket = new WebSocket(socketUrl)
+
+            //Attach socket to terminal
+            this.socket.onopen = ev => {
+                const attachAddon = new AttachAddon(this.socket)
+                this.terminal.loadAddon(attachAddon)
+            }
         }
     },
     mounted() {
@@ -68,6 +91,13 @@ export default {
         }
     },
     beforeDestroy() {
+        console.log(
+            'Terminal for user ' + this.sshUserId + ' will be destroyed'
+        )
+        if (this.socket) {
+            this.socket.close()
+            this.socket = null
+        }
         if (process.browser) {
             window.onresize = null
         }

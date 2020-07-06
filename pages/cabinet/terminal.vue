@@ -33,21 +33,21 @@
         </div>
         <div
             ref="consoleContainer"
-            v-if="openConnections.length > 0"
+            v-if="activeConnections.length > 0"
             class="bg-gray-900 console-container"
         >
             <div class="tabs">
                 <div
-                    v-for="(openConnection, index) in openConnections"
+                    v-for="(openConnection, index) in activeConnections"
                     :key="'oc' + index"
                     class="tab-item"
                 >
-                    {{ openConnection.username }}
+                    {{ openConnection.username }}-{{ openConnection.index }}
                     <sui-icon
                         class="m-0 ml-1"
                         name="close icon"
                         size="small"
-                        @click="openConnections.splice(index, 1)"
+                        @click="closeConnection(openConnection)"
                     />
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 :ssh-user-id="selectedConnection.id"
             />
             <div class="console-control">
-                <div class="button">
+                <div class="button" @click="refreshConsole">
                     <sui-icon class="m-0 mr-1" name="sync alternate" /> Refresh
                 </div>
                 <div class="button ml-auto" @click="maximizeConsole">
@@ -79,8 +79,12 @@ export default {
         AddUserModal
     },
     async asyncData({ $axios }) {
-        let sshConnections = await $axios.$get('api/GetSshConnections')
-        let sshServers = await $axios.$get('api/GetSshServers')
+        let sshConnectionsPromise = $axios.$get('api/GetSshConnections')
+        let sshServersPromise = $axios.$get('api/GetSshServers')
+        let [sshConnections, sshServers] = await Promise.all([
+            sshConnectionsPromise,
+            sshServersPromise
+        ])
         return {
             sshConnections,
             sshServers
@@ -89,26 +93,41 @@ export default {
     data() {
         return {
             addUserModal: false,
-            openConnections: [],
+            openConnections: {},
             selectedConnection: null
+        }
+    },
+    computed: {
+        activeConnections() {
+            return Object.values(this.openConnections).flat()
         }
     },
     methods: {
         openConnection(connection) {
-            let someTabs = this.openConnections.filter(c =>
-                c.originalUsername
-                    ? c.originalUsername == connection.username
-                    : c.username == connection.username
-            )
-            if (someTabs.length > 0) {
-                let modified = { ...connection }
-                modified.originalUsername = connection.username
-                modified.username += '-' + someTabs.length
-                this.openConnections.push(modified)
-            } else {
-                this.openConnections.push(connection)
+            if (!this.openConnections[connection.username]) {
+                this.openConnections[connection.username] = []
             }
-            this.selectedConnection = connection
+
+            let modified = { ...connection }
+            if (this.openConnections[connection.username].length > 0) {
+                let lastIndex =
+                    this.openConnections[connection.username][
+                        this.openConnections[connection.username].length - 1
+                    ].index || 0
+                modified.index = lastIndex + 1
+            }
+
+            this.openConnections[connection.username].push(modified)
+
+            this.openConnections = { ...this.openConnections }
+
+            this.selectedConnection = modified
+        },
+        closeConnection(connection) {
+            this.openConnections[connection.username] = this.openConnections[
+                connection.username
+            ].filter(c => c.index != connection.index)
+            this.openConnections = { ...this.openConnections }
         },
         maximizeConsole() {
             if (!document.fullscreenElement) {
@@ -122,6 +141,9 @@ export default {
             } else {
                 document.exitFullscreen()
             }
+        },
+        refreshConsole() {
+            this.$refs.terminal.reconnect()
         },
         async updateConnections() {
             this.sshConnections = await this.$axios.$get(

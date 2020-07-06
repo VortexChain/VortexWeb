@@ -1,5 +1,9 @@
+@import '../fonts/JetBrainsMono/style.css';
+@import '../fonts/ProductSans/style.css';
+
 * {
     transition: background-color 0.2s;
+    font-family: 'Product Sans Regular', sans-serif;
 }
 
 html,

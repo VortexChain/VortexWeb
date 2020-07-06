@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 export default context => {
     Vue.prototype.$push = (elem, parentElement, props, rest) => {
