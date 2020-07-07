@@ -2,7 +2,7 @@ import cookies from 'js-cookie'
 
 export const state = () => ({
     currentUser: null,
-    currentToken: null
+    currentToken: null,
 })
 
 export const mutations = {
@@ -18,11 +18,11 @@ export const mutations = {
         state.currentToken = null
         cookies.remove('access_token')
         this.$axios.setToken(false)
-    }
+    },
 }
 
 export const getters = {
-    getToken: state => state.currentToken || cookies.get('access_token')
+    getToken: (state) => state.currentToken || cookies.get('access_token'),
 }
 
 export const actions = {
@@ -30,11 +30,11 @@ export const actions = {
         return new Promise((resolve, reject) => {
             this.$fireAuth
                 .signInWithEmailAndPassword(data.login, data.password)
-                .then(function(result) {
+                .then(function (result) {
                     dispatch('loginSuccess', result)
                     resolve(result)
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     dispatch('loginFailed', error)
                     reject(error)
                 })
@@ -60,11 +60,11 @@ export const actions = {
         return new Promise((resolve, reject) => {
             this.$fireAuth
                 .signInWithPopup(provider)
-                .then(function(result) {
+                .then(function (result) {
                     dispatch('loginSuccess', result)
                     resolve(result)
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     dispatch('loginFailed', error)
                     reject(error)
                 })
@@ -94,11 +94,11 @@ export const actions = {
         return new Promise((resolve, reject) => {
             this.$fireAuth
                 .createUserWithEmailAndPassword(data.login, data.password)
-                .then(function(result) {
+                .then(function (result) {
                     // dispatch('registerSuccess',result)
                     resolve(result)
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     // dispatch('registerFailed',error)
                     reject(error)
                 })
@@ -111,7 +111,7 @@ export const actions = {
             email: user.email,
             avatar: user.photoURL,
             uid: user.uid,
-            emailVerified: user.emailVerified
+            emailVerified: user.emailVerified,
             // providerData: user.providerData
         }
 
@@ -124,7 +124,7 @@ export const actions = {
             .then(() => {
                 // Sign-out successful.
             })
-            .catch(error => {
+            .catch((error) => {
                 // An error happened.
             })
 
@@ -137,16 +137,16 @@ export const actions = {
                 .updateProfile({
                     displayName: user.name,
                     photoURL: user.avatar,
-                    role: user.role
+                    role: user.role,
                 })
-                .then(function(result) {
+                .then(function (result) {
                     // dispatch('updateUserSuccess',result)
                     resolve(result)
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     // dispatch('updateUserFailed',error)
                     reject(error)
                 })
         })
-    }
+    },
 }

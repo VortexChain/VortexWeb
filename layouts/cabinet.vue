@@ -19,34 +19,34 @@
                             {
                                 icon: 'user',
                                 title: 'Profile',
-                                route: 'cabinet-profile'
+                                route: 'cabinet-profile',
                             },
                             {
                                 icon: 'cog',
                                 title: 'Settings',
-                                route: 'cabinet-settings'
+                                route: 'cabinet-settings',
                             },
                             {
                                 icon: 'terminal',
                                 title: 'Terminal',
-                                route: 'cabinet-terminal'
+                                route: 'cabinet-terminal',
                             },
                             {
                                 icon: 'podcast',
                                 title: 'Streaming',
-                                route: 'cabinet-streaming'
+                                route: 'cabinet-streaming',
                             },
                             {
                                 icon: 'th large',
                                 title: 'Subscripton',
                                 route: 'cabinet-subscriptions',
-                                label: 'entp'
+                                label: 'entp',
                             },
                             {
                                 icon: 'comments',
                                 title: 'Chat',
-                                route: 'cabinet-chat'
-                            }
+                                route: 'cabinet-chat',
+                            },
                         ]"
                     />
                 </div>
@@ -123,13 +123,13 @@ export default {
     components: {
         CabinetHeader,
         CabinetSidebar,
-        NavMenu
+        NavMenu,
     },
     computed: {
         ...mapState({
-            currentUser: state => state.user.currentUser
-        })
-    }
+            currentUser: (state) => state.user.currentUser,
+        }),
+    },
 }
 </script>
 

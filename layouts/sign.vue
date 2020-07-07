@@ -18,9 +18,9 @@ import { mapState } from 'vuex'
 export default {
     computed: {
         ...mapState({
-            theme: state => state.themes.currentTheme
-        })
-    }
+            theme: (state) => state.themes.currentTheme,
+        }),
+    },
 }
 </script>
 

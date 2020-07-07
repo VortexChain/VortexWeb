@@ -1,4 +1,4 @@
-export default async context => {
+export default async (context) => {
     // Retrieve Firebase Messaging object.
     const messaging = context.app.$fireMess
 
@@ -8,7 +8,7 @@ export default async context => {
     )
 
     //Request permission to receive notifications
-    Notification.requestPermission().then(permission => {
+    Notification.requestPermission().then((permission) => {
         if (permission === 'granted') {
             console.log('Notification permission granted.')
             // TODO(developer): Retrieve an Instance ID token for use with FCM.
@@ -16,7 +16,7 @@ export default async context => {
 
             messaging
                 .getToken()
-                .then(currentToken => {
+                .then((currentToken) => {
                     if (currentToken) {
                         console.info(currentToken)
                         context.store.dispatch(
@@ -35,7 +35,7 @@ export default async context => {
                         setTokenSentToServer(false)
                     }
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(
                         'An error occurred while retrieving token. ',
                         err
@@ -47,7 +47,7 @@ export default async context => {
             messaging.onTokenRefresh(() => {
                 messaging
                     .getToken()
-                    .then(refreshedToken => {
+                    .then((refreshedToken) => {
                         console.log('Token refreshed.')
                         context.store.dispatch(
                             'notifications/changeToken',
@@ -60,17 +60,17 @@ export default async context => {
                         // sendTokenToServer(refreshedToken)
                         // ...
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         console.log('Unable to retrieve refreshed token ', err)
                         showToken('Unable to retrieve refreshed token ', err)
                     })
             })
 
-            messaging.onMessage(payload => {
+            messaging.onMessage((payload) => {
                 console.info('Payload', payload)
                 context.store.dispatch('notifications/showToast', {
                     title: payload.data.title,
-                    message: payload.data.message
+                    message: payload.data.message,
                 })
             })
         } else {

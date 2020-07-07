@@ -7,7 +7,7 @@
                         { title: 'Main', route: 'index' },
                         { title: 'News', route: 'news' },
                         { title: 'API', route: 'desc' },
-                        { title: 'About', route: 'about' }
+                        { title: 'About', route: 'about' },
                     ]"
                 />
                 <main>
@@ -86,22 +86,22 @@ export default {
     components: {
         LandingFooter,
         MastHead,
-        NavMenu
+        NavMenu,
     },
     computed: {
         ...mapState({
-            theme: state => state.themes.currentTheme,
-            currentUser: state => state.user.currentUser
-        })
+            theme: (state) => state.themes.currentTheme,
+            currentUser: (state) => state.user.currentUser,
+        }),
     },
     data() {
         return {}
     },
     methods: {
         ...mapActions({
-            changeTheme: 'themes/changeTheme'
-        })
-    }
+            changeTheme: 'themes/changeTheme',
+        }),
+    },
 }
 </script>
 

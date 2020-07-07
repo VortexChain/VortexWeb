@@ -110,7 +110,7 @@
                             registerWith(createUser, {
                                 login: email,
                                 password: password,
-                                name: name
+                                name: name,
                             })
                         "
                         >Sign up</sui-button
@@ -141,7 +141,7 @@ export default {
             error: null,
             name: null,
             state: null,
-            agree: false
+            agree: false,
         }
     },
     methods: {
@@ -150,12 +150,12 @@ export default {
             loginWithGoogle: 'user/loginWithGoogle',
             loginWithFacebook: 'user/loginWithFacebook',
             loginWithGithub: 'user/loginWithGithub',
-            loginWithMicrosoft: 'user/loginWithMicrosoft'
+            loginWithMicrosoft: 'user/loginWithMicrosoft',
         }),
         registerWith(func, args) {
             this.state = 'loading'
             func(args)
-                .then(result => {
+                .then((result) => {
                     this.state = 'success'
 
                     let cred = null
@@ -163,7 +163,7 @@ export default {
                         cred = new PasswordCredential({
                             id: args.login,
                             name: args.name,
-                            password: args.password
+                            password: args.password,
                             // iconURL: iconUrl
                         })
                     }
@@ -176,19 +176,19 @@ export default {
                     //     });
                     // }
 
-                    navigator.credentials.store(cred).then(function(arg) {
+                    navigator.credentials.store(cred).then(function (arg) {
                         // Do something else.
                     })
 
                     this.$nuxt.$router.push(this.localePath('index'))
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.error = error.message
                     this.state = 'error'
                 })
-        }
+        },
     },
-    mounted() {}
+    mounted() {},
 }
 </script>
 

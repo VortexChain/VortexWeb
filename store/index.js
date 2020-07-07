@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import {
     getUserFromCookie,
     getUserFromSession,
-    getTokenFromCookie
+    getTokenFromCookie,
 } from '@/authentication'
 const cookieparser = process.server ? require('cookieparser') : undefined
 
@@ -29,7 +29,7 @@ export const actions = {
                 name: user.name,
                 email: user.email,
                 avatar: user.picture,
-                uid: user.user_id
+                uid: user.user_id,
             })
         }
 
@@ -38,5 +38,5 @@ export const actions = {
             this.$axios.setToken(token, 'Bearer')
         }
     },
-    nuxtClientInit({ commit }, { req }) {}
+    nuxtClientInit({ commit }, { req }) {},
 }

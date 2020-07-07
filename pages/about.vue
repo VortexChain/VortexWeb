@@ -11,16 +11,16 @@ export default {
     layout: 'landing',
     data() {
         return {
-            open: false
+            open: false,
         }
     },
     components: {},
     computed: {
         ...mapState({
-            theme: state => state.themes.currentTheme
-        })
+            theme: (state) => state.themes.currentTheme,
+        }),
     },
-    methods: {}
+    methods: {},
 }
 </script>
 

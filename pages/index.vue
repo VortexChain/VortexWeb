@@ -5,7 +5,7 @@
                 id="index-container"
                 :class="theme"
                 class="container"
-                style="height:100%;"
+                style="height: 100%;"
             >
                 <div>
                     <h1 class="title">
@@ -39,22 +39,22 @@ export default {
     components: {},
     computed: {
         ...mapState({
-            user: state => state.user.currentUser,
-            theme: state => state.themes.currentTheme
-        })
+            user: (state) => state.user.currentUser,
+            theme: (state) => state.themes.currentTheme,
+        }),
     },
     methods: {
         ...mapActions({
             logoutUser: 'user/logoutUser',
-            showToast: 'notifications/showToast'
+            showToast: 'notifications/showToast',
         }),
         testRequest() {
             this.$axios
                 .get('api/BrokenMethod')
                 .then(() => {})
                 .catch(() => {})
-        }
-    }
+        },
+    },
 }
 </script>
 

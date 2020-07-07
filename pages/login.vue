@@ -98,7 +98,7 @@
                         @click.prevent="
                             loginWith(loginUser, {
                                 login: email,
-                                password: password
+                                password: password,
                             })
                         "
                         >Log in</sui-button
@@ -128,13 +128,13 @@ export default {
             email: null,
             password: null,
             error: null,
-            state: null
+            state: null,
         }
     },
     computed: {
         ...mapState({
-            theme: state => state.themes.currentTheme
-        })
+            theme: (state) => state.themes.currentTheme,
+        }),
     },
     methods: {
         loginWith(func, args) {
@@ -145,7 +145,7 @@ export default {
                     this.state = 'success'
                     this.$nuxt.$router.push(this.localePath('index'))
                 })
-                .catch(error => {
+                .catch((error) => {
                     this.error = error.message
                     this.state = 'error'
                 })
@@ -156,29 +156,29 @@ export default {
             loginWithGithub: 'user/loginWithGithub',
             loginWithMicrosoft: 'user/loginWithMicrosoft',
             loginUser: 'user/loginUser',
-            showToast: 'notifications/showToast'
-        })
+            showToast: 'notifications/showToast',
+        }),
     },
     mounted() {
         if (window.PasswordCredential || window.FederatedCredential) {
             navigator.credentials
                 .get({
-                    password: true
+                    password: true,
                 })
-                .then(credential => {
+                .then((credential) => {
                     if (credential) {
                         switch (credential.type) {
                             case 'password':
                                 this.loginWith(this.loginUser, {
                                     login: credential.id,
-                                    password: credential.password
+                                    password: credential.password,
                                 })
                                 break
                         }
                     }
                 })
         }
-    }
+    },
 }
 </script>
 

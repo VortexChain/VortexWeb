@@ -7,7 +7,7 @@
                         perspective: 1000,
                         max: 2,
                         reverse: true,
-                        glare: true
+                        glare: true,
                     }"
                     class="bg-gray-500 hover:bg-gray-600 active:bg-gray-700 cursor-pointer news-card"
                 ></div>
@@ -18,7 +18,7 @@
                         perspective: 1000,
                         max: 2,
                         reverse: true,
-                        glare: true
+                        glare: true,
                     }"
                     class="bg-gray-500 hover:bg-gray-600 active:bg-gray-700 cursor-pointer news-card"
                 ></div>
@@ -29,7 +29,7 @@
                         perspective: 1000,
                         max: 2,
                         reverse: true,
-                        glare: true
+                        glare: true,
                     }"
                     class="bg-gray-500 hover:bg-gray-600 active:bg-gray-700 cursor-pointer news-card"
                 ></div>
@@ -40,7 +40,7 @@
                         perspective: 1000,
                         max: 2,
                         reverse: true,
-                        glare: true
+                        glare: true,
                     }"
                     class="bg-gray-500 hover:bg-gray-600 active:bg-gray-700 cursor-pointer news-card"
                 ></div>
@@ -51,7 +51,7 @@
                         perspective: 1000,
                         max: 2,
                         reverse: true,
-                        glare: true
+                        glare: true,
                     }"
                     class="bg-gray-500 hover:bg-gray-600 active:bg-gray-700 cursor-pointer news-card"
                 ></div>
@@ -62,7 +62,7 @@
                         perspective: 1000,
                         max: 2,
                         reverse: true,
-                        glare: true
+                        glare: true,
                     }"
                     class="bg-gray-500 hover:bg-gray-600 active:bg-gray-700 cursor-pointer news-card"
                 ></div>
@@ -77,12 +77,12 @@ export default {
     layout: 'landing',
     data() {
         return {
-            open: false
+            open: false,
         }
     },
     components: {},
     computed: {},
-    methods: {}
+    methods: {},
 }
 </script>
 

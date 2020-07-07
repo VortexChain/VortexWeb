@@ -1,29 +1,29 @@
 import https from 'https'
 
-export default function(context) {
+export default function (context) {
     //{ $axios, redirect }
     context.$axios.defaults.httpsAgent = new https.Agent({
-        rejectUnauthorized: false
+        rejectUnauthorized: false,
     })
 
-    context.$axios.onRequest(config => {
+    context.$axios.onRequest((config) => {
         console.log('Making request to ' + config.url)
     })
 
-    context.$axios.onError(error => {
+    context.$axios.onError((error) => {
         const code = parseInt(error.response && error.response.status)
         if (code === 400) {
             context.app.$notify.error({
                 title: 'Error',
                 message: error.response.data,
-                position: 'topRight'
+                position: 'topRight',
             })
         }
         if (code === 401) {
             context.app.$notify.error({
                 title: 'Error',
                 message: 'Unauthorized',
-                position: 'topRight'
+                position: 'topRight',
             })
             context.store.dispatch('user/logoutUser')
             context.redirect('/login')

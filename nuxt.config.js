@@ -10,35 +10,35 @@ module.exports = {
             { charset: 'utf-8' },
             {
                 name: 'viewport',
-                content: 'width=device-width, initial-scale=1'
+                content: 'width=device-width, initial-scale=1',
             },
             {
                 hid: 'description',
                 name: 'description',
-                content: 'Web part of service'
-            }
+                content: 'Web part of service',
+            },
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             {
                 rel: 'stylesheet',
                 href:
-                    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
-            }
-        ]
+                    'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+            },
+        ],
     },
     loading: { color: '#3B8070' },
     css: [
         '~assets/css/global.css',
         '~assets/less/transitions.less',
-        '~assets/less/scrollbars.less'
+        '~assets/less/scrollbars.less',
     ],
     styleResources: {
         less: [
             '~/assets/less/colors.less',
             '~/assets/less/dark-colors.less',
-            '~/assets/less/variables.less'
-        ]
+            '~/assets/less/variables.less',
+        ],
     },
     // cache: true,
     modules: [
@@ -54,19 +54,19 @@ module.exports = {
             '@nuxtjs/sitemap',
             {
                 hostname: 'https://vortexchain.ru',
-                gzip: true
-            }
+                gzip: true,
+            },
         ],
         [
             'nuxt-izitoast',
             {
                 position: 'bottomLeft',
                 transitionIn: 'bounceInRight',
-                transitionOut: 'fadeOutRight'
-            }
+                transitionOut: 'fadeOutRight',
+            },
         ],
         [
-            'nuxt-fire',
+            '@nuxtjs/firebase',
             {
                 // Required:
                 config: {
@@ -77,7 +77,7 @@ module.exports = {
                         projectId: 'vortex-4b6db',
                         storageBucket: '',
                         messagingSenderId: '951093526823',
-                        appId: '1:951093526823:web:691535202ea0b370'
+                        appId: '1:951093526823:web:691535202ea0b370',
                     },
                     production: {
                         apiKey: 'AIzaSyBtf8H9U6pzjsLMJLNs1p86e_95B4ASYH4',
@@ -86,19 +86,19 @@ module.exports = {
                         projectId: 'vortex-4b6db',
                         storageBucket: '',
                         messagingSenderId: '951093526823',
-                        appId: '1:951093526823:web:691535202ea0b370'
-                    }
+                        appId: '1:951093526823:web:691535202ea0b370',
+                    },
                 },
                 services: {
                     auth: true,
-                    messaging: true
+                    messaging: true,
                 },
                 // The following options are optional:
-                useOnly: ['auth', 'messaging']
+                useOnly: ['auth', 'messaging'],
                 // useOnly: ['auth','firestore','functions','storage','realtimeDb', 'messaging', 'performance'],
                 // customEnv: false,
                 // functionsLocation: 'us-central1',
-            }
+            },
         ],
         [
             'nuxt-mq',
@@ -109,16 +109,16 @@ module.exports = {
                     sm: 768,
                     md: 1024,
                     lg: 1280,
-                    xl: Infinity
-                }
-            }
+                    xl: Infinity,
+                },
+            },
         ],
         ['nuxt-purgecss', {}],
-        ['@nuxtjs/robots', {}]
+        ['@nuxtjs/robots', {}],
     ],
     axios: {
         https: true,
-        baseURL: 'http://vortexchain.ru'
+        baseURL: 'http://vortexchain.ru',
     },
     i18n: {
         locales: [
@@ -127,22 +127,22 @@ module.exports = {
                 iso: 'en-US',
                 file: 'en-US.js',
                 name: 'English',
-                flag: 'us'
+                flag: 'us',
             },
             {
                 code: 'ru',
                 iso: 'ru-RU',
                 file: 'ru-RU.js',
                 name: 'Русский',
-                flag: 'ru'
+                flag: 'ru',
             },
             {
                 code: 'fr',
                 iso: 'fr-FR',
                 file: 'fr-FR.js',
                 name: 'Français',
-                flag: 'fr'
-            }
+                flag: 'fr',
+            },
         ],
         seo: true,
         defaultLocale: 'en',
@@ -151,8 +151,8 @@ module.exports = {
         detectBrowserLanguage: {
             useCookie: true,
             cookieKey: 'i18n',
-            alwaysRedirect: false
-        }
+            alwaysRedirect: false,
+        },
     },
     plugins: [
         { src: '~/plugins/push-component.js' },
@@ -163,7 +163,7 @@ module.exports = {
         { src: '~/plugins/vue-tilt', mode: 'client' },
         { src: '~/plugins/ripple-effect', mode: 'client' },
         { src: '~/plugins/xterm', mode: 'client' },
-        { src: '~/plugins/axios' }
+        { src: '~/plugins/axios' },
         // { src: '~/plugins/dynamic-modal' },
     ],
     build: {
@@ -175,11 +175,11 @@ module.exports = {
                         // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
                         {
                             buildTarget: isServer ? 'server' : 'client',
-                            corejs: { version: 3 }
-                        }
-                    ]
+                            corejs: { version: 3 },
+                        },
+                    ],
                 ]
-            }
+            },
         },
         extend(config, { isDev, isClient }) {
             if (isDev) {
@@ -190,14 +190,14 @@ module.exports = {
                     enforce: 'pre',
                     test: /\.(js|vue)$/,
                     loader: 'eslint-loader',
-                    exclude: /(node_modules)/
+                    exclude: /(node_modules)/,
                 })
             }
-        }
+        },
     },
     server: {
         port: 3000, // default: 3000
-        host: '192.168.0.106', // default: localhost,
-        timing: false
-    }
+        host: 'localhost', // default: localhost,
+        timing: false,
+    },
 }
