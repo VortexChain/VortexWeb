@@ -1,11 +1,11 @@
 <template>
-    <div></div>
+  <div></div>
 </template>
 
 <script>
 export default {
-    middleware: 'auth',
-    layout: 'cabinet'
+  middleware: 'auth',
+  layout: 'cabinet',
 }
 </script>
 

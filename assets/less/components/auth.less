@@ -1,0 +1,114 @@
+@form-container-width: 550px;
+@label-container-width: 400px;
+@transition-time: 0.7s;
+@transition: transform @transition-time ease-in-out;
+
+form.loading {
+  opacity: 0.5;
+
+  &::before {
+    display: none;
+  }
+}
+
+.form-container {
+  background-color: white;
+  width: @form-container-width;
+  position: absolute;
+  transition: @transition;
+  overflow-x: hidden;
+}
+
+.label-container {
+  width: calc(100vw - @form-container-width);
+  position: absolute;
+  transition: @transition;
+  & > div {
+    width: @label-container-width;
+  }
+}
+
+.header-logo {
+  mask: url(~static/vortex.svg);
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  mask-size: contain;
+  transition: 1s;
+}
+
+.header-nav-logo {
+  margin-bottom: 8rem;
+
+  &:hover > .header-logo {
+    transform: rotate(360deg);
+  }
+}
+
+.action-form {
+  padding: 8rem;
+}
+
+@media (max-width: 1024px) {
+  .action-form {
+    padding: 4rem;
+  }
+
+  .form-container {
+    width: 400px;
+  }
+
+  .label-container {
+    width: calc(100vw - 400px);
+  }
+}
+
+@media (max-width: 850px) {
+  .form-container {
+    width: 100%;
+  }
+
+  .action-form {
+    padding: 2rem;
+  }
+
+  .label-container {
+    display: none !important;
+  }
+}
+
+.light-mode {
+  .header-logo {
+    @apply bg-black;
+  }
+
+  .divider {
+    color: @text-color;
+  }
+
+  label {
+    color: @text-color !important;
+  }
+
+  .form-container {
+    @apply bg-white;
+  }
+}
+
+.dark-mode {
+  .header-logo {
+    @apply bg-white;
+  }
+
+  .divider {
+    color: @text-color-dark;
+  }
+
+  label {
+    color: @text-color-dark !important;
+  }
+
+  .form-container {
+    @apply bg-gray-800;
+  }
+}
